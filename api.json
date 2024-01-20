@@ -45,7 +45,7 @@
     ],
     "people_now_present": [
       {
-        "name": "Im Gebäude",
+        "name": "Im Geb\u00e4ude",
         "description": "Kann ungenau sein!",
         "value": 0
       }
@@ -53,14 +53,14 @@
     "temperature": [
       {
         "unit": "\u00b0C",
-        "location": "Im Gebäude",
+        "location": "Im Geb\u00e4ude",
         "value": 0
       }
     ],
     "humidity": [
       {
         "unit": "%",
-        "location": "Im Gebäude",
+        "location": "Im Geb\u00e4ude",
         "value": 0
       }
     ]
