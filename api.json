@@ -53,15 +53,14 @@
     "temperature": [
       {
         "unit": "\u00b0C",
-        "name": "Im Gebäude",
-        "location": "Hauptgebäude",
+        "location": "Im Gebäude",
         "value": 0
       }
     ],
     "humidity": [
       {
         "unit": "%",
-        "name": "Im Gebäude",
+        "location": "Im Gebäude",
         "value": 0
       }
     ]
