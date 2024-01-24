@@ -27,7 +27,7 @@
       "open": "https://elija-k.github.io/SpaceAPI-ODW/odw_open.png",
       "closed": "https://elija-k.github.io/SpaceAPI-ODW/odw_closed.png"
     },
-    "open": true,
+    "open": false,
     "message": "Offen jeden: Mi 19:00"
   },
   "sensors": {
