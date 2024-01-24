@@ -54,7 +54,8 @@
       {
         "unit": "\u00b0C",
         "location": "Im Geb\u00e4ude",
-        "value": 0
+        "value": 0,
+        "values": 19
       }
     ],
     "humidity": [
