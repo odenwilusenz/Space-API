@@ -43,13 +43,6 @@
         "value": true
       }
     ],
-    "people_now_present": [
-      {
-        "name": "Im Geb\u00e4ude",
-        "description": "Kann ungenau sein!",
-        "value": 0
-      }
-    ],
     "temperature": [
       {
         "unit": "\u00b0C",
