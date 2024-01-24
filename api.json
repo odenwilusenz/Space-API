@@ -34,7 +34,7 @@
     "network_connections": [
       {
         "type": "wifi",
-        "value": 9
+        "value": 8
       }
     ],
     "door_locked": [
@@ -47,14 +47,14 @@
       {
         "unit": "\u00b0C",
         "location": "Im Geb\u00e4ude",
-        "value": 0
+        "value": 73
       }
     ],
     "humidity": [
       {
         "unit": "%",
         "location": "Im Geb\u00e4ude",
-        "value": 0
+        "value": 18
       }
     ]
   },
