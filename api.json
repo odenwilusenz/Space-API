@@ -34,7 +34,7 @@
     "network_connections": [
       {
         "type": "wifi",
-        "value": 9
+        "value": 6
       }
     ],
     "door_locked": [
