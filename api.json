@@ -29,7 +29,7 @@
     },
     "open": false,
     "message": "BETA: Offen jeden Mi ab 19:00"
-  }
+    }
   "sensors": {
     "network_connections": [
       {
