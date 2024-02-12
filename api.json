@@ -28,8 +28,8 @@
       "closed": "https://elija-k.github.io/SpaceAPI-ODW/odw_closed.png"
     },
     "open": false,
-    "message": "Offen jeden: Mi 19:00"
-  },
+    "message": "BETA: Offen jeden Mi ab 19:00"
+  }
   "sensors": {
     "network_connections": [
       {
