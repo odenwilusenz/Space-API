@@ -1,78 +1,8 @@
 {
-  "api": "0.13",
-  "api_compatibility": [
-    "14"
-  ],
-  "space": "Odenwilusenz",
-  "logo": "https://odenwilusenz.ch/odw-global/wGlobal/layout/images/Logo_breit.png",
-  "url": "https://odenwilusenz.ch",
-  "location": {
-    "address": "Hardmorgenweg 21, 8222 Beringen, Switzerland",
-    "lon": 8.58,
-    "lat": 47.695,
-    "timezone": "Europe/Zurich"
-  },
-  "contact": {
-    "email": "mail@odenwilusenz.ch",
-    "issue_mail": "bluetonyum@gmail.com",
-    "phone": "+41 79 767 50 15",
-    "facebook": "https://www.facebook.com/groups/32995461009/",
-    "twitter": "@odenwilusenz"
-  },
-  "issue_report_channels": [
-    "email"
-  ],
-  "state": {
-    "icon": {
-      "open": "https://elija-k.github.io/SpaceAPI-ODW/odw_open.png",
-      "closed": "https://elija-k.github.io/SpaceAPI-ODW/odw_closed.png"
-    },
-    "open": false,
-    "message": "BETA: Offen jeden Mi ab 19:00"
-    }
   "sensors": {
-    "network_connections": [
-      {
-        "type": "wifi",
-        "value": 7
-      }
-    ],
-    "door_locked": [
-      {
-        "location": "Vordert\u00fcre",
-        "value": true
-      }
-    ],
-    "temperature": [
-      {
-        "unit": "\u00b0C",
-        "location": "Im Geb\u00e4ude",
-        "value": 13
-      }
-    ],
-    "humidity": [
-      {
-        "unit": "%",
-        "location": "Im Geb\u00e4ude",
-        "value": 74
-      }
-    ]
-  },
-  "feed": [
-    {
-      "wiki": [
-        {
-          "type": "Doku-Wiki",
-          "url": "https://wiki.odenwilusenz.ch"
-        }
-      ],
-      "calender": [
-        {
-          "type": "Web",
-          "url": "https://odenwilusenz.ch/odw/veranstaltungen/"
-        }
-      ]
+    "temperature": {
+      "value": 0
     }
-  ],
-  "open": true
+  },
+  "open": false
 }
