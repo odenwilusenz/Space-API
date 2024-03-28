@@ -50,7 +50,7 @@
       {
       "properties": {
         "bits_per_second": {
-          "maximum": "12000000000",
+          "maximum": "",
           "name": "durchschnittswert upstream und downstream",
           "value": 0
         }
@@ -69,30 +69,38 @@
     }
   },
   "membership_plans": {
-    "besucher": {
-      "name": "Besucher",
-      "currency": "CHF",
-      "billing_interval": "yearly",
-      "value": 0
-    },
-    "B": {
-      "name": "B",
-      "currency": "CHF",
-      "billing_interval": "yearly",
-      "value": 120
-    },
-    "C": {
-      "name": "C",
-      "currency": "CHF",
-      "billing_interval": "yearly",
-      "value": 480
-    },
-    "D": {
-      "name": "D",
-      "currency": "CHF",
-      "billing_interval": "yearly",
-      "value": 1200
-    }
+    [
+      {
+        "name": "Besucher",
+        "currency": "CHF",
+        "billing_interval": "yearly",
+        "value": 0
+      },
+    ],
+    [
+      {
+        "name": "B",
+        "currency": "CHF",
+        "billing_interval": "yearly",
+        "value": 120
+      }
+    ]
+    [
+      {
+        "name": "C",
+        "currency": "CHF",
+        "billing_interval": "yearly",
+        "value": 480
+      }
+    ],
+    [
+      {
+        "name": "D",
+        "currency": "CHF",
+        "billing_interval": "yearly",
+        "value": 1200
+      }
+    ]
   },
   "projects": "https://github.com/odenwilusenz"
 }
