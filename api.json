@@ -10,17 +10,61 @@
     "lat": 47.695
   },
   "contact": {
-    "email": "bluetonyum@gmail.com"
+    "email": "mail@odenwilusenz.ch",
+    "issue_mail": "bluetonyum@gmail.com"
   },
-  "issue_report_channels": ["email"],
+  "issue_report_channels": ["issue_mail"],
   "state": {
-    "icon": {
-      "open": "https://github.com/Elija-K/SpaceAPI/blob/main/Odw_Open.png?raw=true",
-      "closed": "https://github.com/Elija-K/SpaceAPI/blob/main/Odw_Closed.png?raw=true"
-    },
+    "message": "Jeden Mittwoch von 19:00 bis cirka 0:00",
     "open": false
   },
-  "projects": [
-    "https://wiki.odenwilusenz.ch/doku.php?id=start"
-  ]
+  "sensors": {
+    "temperature": {
+      "unit": "°C",
+      "location": "Im Space",
+      "value": 0
+    },
+    "humidity": {
+      "unit": "%",
+      "location": "Im Space",
+      "value": 0
+    },
+    "power_consumption": {
+      "unit": "W",
+      "location": "Im Space",
+      "value": 0
+    },
+    "network_connections": {
+      "location": "Im Odenwilusenz_WLAN / Odenwilusenz_LAN",
+      "value": 0
+    },
+    "network_traffic": {
+      "properties": {
+        "bits_per_second": {
+          "maximum": "12000000000",
+          "name": "durchschnittswert upstream und downstream",
+          "value": 0
+        }
+      }
+    }
+  },
+  "feeds": {
+    "wiki": {
+      "type": "DokuWiki",
+      "url": "https://wiki.odenwilusenz.ch"
+    },
+     "calendar": {
+      "type": "Web",
+      "url": "https://odenwilusenz.ch/odw/veranstaltungen/"
+     }
+  },
+  "membership_plans": {
+    "besucher": [
+      {"name": "Besucher"},
+      {"currency": "CHF"},
+      {"billing_interval": "yearly"},
+      {"value": 0}
+    ]
+  },
+  "projects": "https://github.com/odenwilusenz"
 }
