@@ -59,12 +59,30 @@
      }
   },
   "membership_plans": {
-    "besucher": [
-      {"name": "Besucher"},
-      {"currency": "CHF"},
-      {"billing_interval": "yearly"},
-      {"value": 0}
-    ]
+    "besucher": {
+        "name": "Besucher",
+        "currency": "CHF",
+        "billing_interval": "yearly",
+        "value": 0
+    },
+    "B": {
+      "name": "B",
+      "currency": "CHF",
+      "billing_interval": "yearly",
+      "value": 0
+    },
+    "C": {
+      "name": "C",
+      "currency": "CHF",
+      "billing_interval": "yearly",
+      "value": 0
+    },
+    "D": {
+      "name": "D",
+      "currency": "CHF",
+      "billing_interval": "yearly",
+      "value": 0
+    }
   },
   "projects": "https://github.com/odenwilusenz"
 }
