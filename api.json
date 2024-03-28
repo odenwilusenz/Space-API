@@ -19,26 +19,35 @@
     "open": false
   },
   "sensors": {
-    "temperature": {
+    "temperature": [
+      {
       "unit": "C",
       "location": "Im Space",
       "value": 0
-    },
-    "humidity": {
+    }
+    ],
+    "humidity": [
+      {
       "unit": "%",
       "location": "Im Space",
       "value": 0
-    },
-    "power_consumption": {
+    }
+    ],
+    "power_consumption": [
+      {
       "unit": "W",
       "location": "Im Space",
       "value": 0
-    },
-    "network_connections": {
+    }
+    ],
+    "network_connections": [
+      {
       "location": "Im Odenwilusenz_WLAN / Odenwilusenz_LAN",
       "value": 0
-    },
-    "network_traffic": {
+    }
+    ],
+    "network_traffic": [
+      {
       "properties": {
         "bits_per_second": {
           "maximum": "12000000000",
@@ -47,6 +56,7 @@
         }
       }
     }
+    ]
   },
   "feeds": {
     "wiki": {
