@@ -53,17 +53,17 @@
       "type": "DokuWiki",
       "url": "https://wiki.odenwilusenz.ch"
     },
-     "calendar": {
+    "calendar": {
       "type": "Web",
       "url": "https://odenwilusenz.ch/odw/veranstaltungen/"
-     }
+    }
   },
   "membership_plans": {
     "besucher": {
-        "name": "Besucher",
-        "currency": "CHF",
-        "billing_interval": "yearly",
-        "value": 0
+      "name": "Besucher",
+      "currency": "CHF",
+      "billing_interval": "yearly",
+      "value": 0
     },
     "B": {
       "name": "B",
