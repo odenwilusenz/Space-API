@@ -1,5 +1,5 @@
 {
-  "api": "0.13",
+  "api": "0.14",
   "api_compatibility": ["14"],
   "space": "Odenwilusenz",
   "logo": "https://odenwilusenz.ch/odw-global/wGlobal/layout/images/Logo_breit.png",
@@ -69,19 +69,19 @@
       "name": "B",
       "currency": "CHF",
       "billing_interval": "yearly",
-      "value": 0
+      "value": 120
     },
     "C": {
       "name": "C",
       "currency": "CHF",
       "billing_interval": "yearly",
-      "value": 0
+      "value": 480
     },
     "D": {
       "name": "D",
       "currency": "CHF",
       "billing_interval": "yearly",
-      "value": 0
+      "value": 1200
     }
   },
   "projects": "https://github.com/odenwilusenz"
