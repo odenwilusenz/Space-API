@@ -20,7 +20,7 @@
   },
   "sensors": {
     "temperature": {
-      "unit": "°C",
+      "unit": "C",
       "location": "Im Space",
       "value": 0
     },
