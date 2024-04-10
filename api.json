@@ -5,7 +5,7 @@
   "logo": "https://odenwilusenz.ch/odw-global/wGlobal/layout/images/Logo_breit.png",
   "url": "https://odenwilusenz.ch",
   "location": {
-    "address": "Hardmorgenweg 21 , 8222 Beringen, Switzerland",
+    "address": "Hardmorgenweg 21, 8222 Beringen, Switzerland",
     "lon": 8.580,
     "lat": 47.695
   },
@@ -15,47 +15,47 @@
   },
   "issue_report_channels": ["issue_mail"],
   "state": {
-    "message": "Jeden Mittwoch von 19:00 bis cirka 0:00",
+    "message": "Jeden Mittwoch von 19:00 bis circa 0:00",
     "open": false
   },
   "sensors": {
     "temperature": [
       {
-      "unit": "C",
-      "location": "Im Space",
-      "value": 0
-    }
+        "unit": "C",
+        "location": "Im Space",
+        "value": 0
+      }
     ],
     "humidity": [
       {
-      "unit": "%",
-      "location": "Im Space",
-      "value": 0
-    }
+        "unit": "%",
+        "location": "Im Space",
+        "value": 0
+      }
     ],
     "power_consumption": [
       {
-      "unit": "W",
-      "location": "Im Space",
-      "value": 0
-    }
+        "unit": "W",
+        "location": "Im Space",
+        "value": 0
+      }
     ],
     "network_connections": [
       {
-      "location": "Im Odenwilusenz_WLAN / Odenwilusenz_LAN",
-      "value": 0
-    }
+        "location": "Im Odenwilusenz_WLAN / Odenwilusenz_LAN",
+        "value": 0
+      }
     ],
     "network_traffic": [
       {
-      "properties": {
-        "bits_per_second": {
-          "maximum": "",
-          "name": "durchschnittswert upstream und downstream",
-          "value": 0
+        "properties": {
+          "bits_per_second": {
+            "maximum": "",
+            "name": "Durchschnittswert Upstream und Downstream",
+            "value": 0
+          }
         }
       }
-    }
     ]
   },
   "feeds": {
@@ -68,31 +68,31 @@
       "url": "https://odenwilusenz.ch/odw/veranstaltungen/"
     }
   },
-  "membership_plans": {
-      [
-        "name": "Besucher",
-        "currency": "CHF",
-        "billing_interval": "yearly",
-        "value": 0
-      ],
-      [
-        "name": "B",
-        "currency": "CHF",
-        "billing_interval": "yearly",
-        "value": 120
-      ],
-      [
-        "name": "C",
-        "currency": "CHF",
-        "billing_interval": "yearly",
-        "value": 480
-      ],
-      [  
-        "name": "D",
-        "currency": "CHF",
-        "billing_interval": "yearly",
-        "value": 1200
-      ]
+  "membership_plans": [
+    {
+      "name": "Besucher",
+      "currency": "CHF",
+      "billing_interval": "yearly",
+      "value": 0
+    },
+    {
+      "name": "B",
+      "currency": "CHF",
+      "billing_interval": "yearly",
+      "value": 120
+    },
+    {
+      "name": "C",
+      "currency": "CHF",
+      "billing_interval": "yearly",
+      "value": 480
+    },
+    {
+      "name": "D",
+      "currency": "CHF",
+      "billing_interval": "yearly",
+      "value": 1200
     }
+  ],
   "projects": "https://github.com/odenwilusenz"
 }
