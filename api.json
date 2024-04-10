@@ -76,19 +76,19 @@
       "value": 0
     },
     {
-      "name": "B",
+      "name": "Mitglied",
       "currency": "CHF",
       "billing_interval": "yearly",
       "value": 120
     },
     {
-      "name": "C",
+      "name": "Superuser",
       "currency": "CHF",
       "billing_interval": "yearly",
       "value": 480
     },
     {
-      "name": "D",
+      "name": "Co-Worker",
       "currency": "CHF",
       "billing_interval": "yearly",
       "value": 1200
