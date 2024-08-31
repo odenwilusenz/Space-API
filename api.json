@@ -21,7 +21,7 @@
   "sensors": {
     "temperature": [
       {
-        "unit": "C",
+        "unit": "°C",
         "location": "Im Space",
         "value": 0
       }
@@ -50,7 +50,7 @@
       {
         "properties": {
           "bits_per_second": {
-            "maximum": "",
+            "maximum": "1000000",
             "name": "Durchschnittswert Upstream und Downstream",
             "value": 0
           }
@@ -94,5 +94,5 @@
       "value": 1200
     }
   ],
-  "projects": "https://github.com/odenwilusenz"
+  "projects": ["https://github.com/odenwilusenz"]
 }
