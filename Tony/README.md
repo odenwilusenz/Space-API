@@ -1,2 +1,0 @@
-Willkommen in meinem Ordner
-===========================

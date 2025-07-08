@@ -1,19 +1,23 @@
 {
   "api": "0.13",
-  "api_compatibility": ["14"],
+  "api_compatibility": [
+    "14"
+  ],
   "space": "Odenwilusenz",
   "logo": "https://odenwilusenz.ch/odw-global/wGlobal/layout/images/Logo_breit.png",
   "url": "https://odenwilusenz.ch",
   "location": {
     "address": "Hardmorgenweg 21, 8222 Beringen, Switzerland",
-    "lon": 8.580,
+    "lon": 8.58,
     "lat": 47.695
   },
   "contact": {
     "email": "mail@odenwilusenz.ch",
     "issue_mail": "bluetonyum@gmail.com"
   },
-  "issue_report_channels": ["issue_mail"],
+  "issue_report_channels": [
+    "issue_mail"
+  ],
   "state": {
     "message": "Jeden Mittwoch von 19:00 bis circa 0:00",
     "open": false
@@ -21,29 +25,29 @@
   "sensors": {
     "temperature": [
       {
-        "unit": "°C",
+        "unit": "\u00c2\u00b0C",
         "location": "Im Space",
-        "value": 0
+        "value": 400
       }
     ],
     "humidity": [
       {
         "unit": "%",
         "location": "Im Space",
-        "value": 0
+        "value": 894
       }
     ],
     "power_consumption": [
       {
         "unit": "W",
         "location": "Im Space",
-        "value": 0
+        "value": 899
       }
     ],
     "network_connections": [
       {
         "location": "Im Odenwilusenz_WLAN / Odenwilusenz_LAN",
-        "value": 0
+        "value": 49
       }
     ],
     "network_traffic": [
@@ -51,7 +55,7 @@
         "properties": {
           "bits_per_second": {
             "name": "Durchschnittswert Upstream und Downstream",
-            "value": 0
+            "value": 78979789
           }
         }
       }
@@ -93,5 +97,7 @@
       "value": 1200
     }
   ],
-  "projects": ["https://github.com/odenwilusenz"]
+  "projects": [
+    "https://github.com/odenwilusenz"
+  ]
 }

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Space-API Tester</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2em; }
+    input, select, button { margin: 0.5em; }
+    .section { border: 1px solid #ccc; padding: 1em; margin-bottom: 2em; border-radius: 8px; }
+    .response { background: #f4f4f4; padding: 1em; border-radius: 4px; margin-top: 1em; }
+    label { display: inline-block; width: 120px; }
+  </style>
+</head>
+<body>
+  <h1>Space-API Tester</h1>
+
+  <div class="section">
+    <h2>View Full API JSON</h2>
+    <button onclick="fetchApiJson()">GET /api.json</button>
+    <pre id="api-json" class="response"></pre>
+  </div>
+
+  <div class="section">
+    <h2>Keepalive</h2>
+    <button onclick="sendKeepalive()">Send Keepalive</button>
+    <button onclick="startKeepalive()">Start 10min Keepalive (every 30s)</button>
+    <button onclick="stopKeepalive()">Stop Keepalive</button>
+    <div id="keepalive-status" class="response"></div>
+  </div>
+
+  <div class="section">
+    <h2>Read API Values</h2>
+    <select id="read-key">
+      <option value="open">open</option>
+      <option value="message">message</option>
+      <option value="temperature">temperature</option>
+      <option value="humidity">humidity</option>
+      <option value="power">power</option>
+      <option value="net_conn">net_conn</option>
+      <option value="net_traffic">net_traffic</option>
+    </select>
+    <button onclick="readKey()">GET /api/get/&lt;key&gt;</button>
+    <pre id="read-response" class="response"></pre>
+  </div>
+
+  <div class="section">
+    <h2>Write API Values</h2>
+    <form id="write-form" onsubmit="writeKey(); return false;">
+      <label for="write-key">Key:</label>
+      <select id="write-key">
+        <option value="open">open</option>
+        <option value="message">message</option>
+        <option value="temperature">temperature</option>
+        <option value="humidity">humidity</option>
+        <option value="power">power</option>
+        <option value="net_conn">net_conn</option>
+        <option value="net_traffic">net_traffic</option>
+      </select>
+      <label for="write-value">Value:</label>
+      <input type="text" id="write-value" required>
+      <select id="write-method">
+        <option value="GET">GET</option>
+        <option value="POST">POST</option>
+        <option value="PUT">PUT</option>
+      </select>
+      <button type="submit">Send</button>
+    </form>
+    <pre id="write-response" class="response"></pre>
+  </div>
+
+  <script>
+    // Fetch and display the full API JSON
+    function fetchApiJson() {
+      fetch('/api.json')
+        .then(r => r.json())
+        .then(data => {
+          document.getElementById('api-json').textContent = JSON.stringify(data, null, 2);
+        })
+        .catch(e => document.getElementById('api-json').textContent = 'Error: ' + e);
+    }
+
+    // Send keepalive signal
+    function sendKeepalive() {
+      fetch('/api/keepalive', { method: 'POST' })
+        .then(r => r.json())
+        .then(data => {
+          document.getElementById('keepalive-status').textContent = JSON.stringify(data, null, 2);
+        })
+        .catch(e => document.getElementById('keepalive-status').textContent = 'Error: ' + e);
+    }
+
+    // Keepalive interval logic
+    let keepaliveInterval = null;
+    function startKeepalive() {
+      stopKeepalive();
+      sendKeepalive();
+      keepaliveInterval = setInterval(sendKeepalive, 30000); // every 30s
+      setTimeout(stopKeepalive, 10 * 60 * 1000); // stop after 10min
+      document.getElementById('keepalive-status').textContent = 'Keepalive started for 10 minutes.';
+    }
+    function stopKeepalive() {
+      if (keepaliveInterval) clearInterval(keepaliveInterval);
+      keepaliveInterval = null;
+      document.getElementById('keepalive-status').textContent += '\nKeepalive stopped.';
+    }
+
+    // Read a key
+    function readKey() {
+      const key = document.getElementById('read-key').value;
+      fetch(`/api/get/${encodeURIComponent(key)}`)
+        .then(r => r.json())
+        .then(data => {
+          document.getElementById('read-response').textContent = JSON.stringify(data, null, 2);
+        })
+        .catch(e => document.getElementById('read-response').textContent = 'Error: ' + e);
+    }
+
+    // Write a key/value using selected method
+    function writeKey() {
+      const key = document.getElementById('write-key').value;
+      const value = document.getElementById('write-value').value;
+      const method = document.getElementById('write-method').value;
+
+      let url, options;
+      if (method === 'GET') {
+        url = `/api/change/get?key=${encodeURIComponent(key)}&value=${encodeURIComponent(value)}`;
+        options = { method: 'GET' };
+      } else if (method === 'POST') {
+        url = '/api/change/post';
+        options = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: `key=${encodeURIComponent(key)}&value=${encodeURIComponent(value)}`
+        };
+      } else if (method === 'PUT') {
+        url = '/api/change/put';
+        options = {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: `key=${encodeURIComponent(key)}&value=${encodeURIComponent(value)}`
+        };
+      }
+      fetch(url, options)
+        .then(r => r.json())
+        .then(data => {
+          document.getElementById('write-response').textContent = JSON.stringify(data, null, 2);
+        })
+        .catch(e => document.getElementById('write-response').textContent = 'Error: ' + e);
+    }
+  </script>
+</body>
+</html>
