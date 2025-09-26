@@ -20,7 +20,7 @@
   ],
   "state": {
     "message": "Jeden Mittwoch von 19:00 bis circa 0:00",
-    "open": false
+    "open": true
   },
   "sensors": {
     "temperature": [
