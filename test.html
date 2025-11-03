@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ODW SpaceAPI – Test UI</title>
+    <style>
+        body { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial; padding: 1rem; }
+        .card { border: 1px solid #ddd; padding: 1rem; margin: .5rem 0; border-radius: 6px; }
+        label { display:block; margin: .25rem 0; }
+        input[type=number], input[type=text], select { width: 100%; box-sizing: border-box; padding: .35rem; }
+        button { margin-top: .5rem; }
+        #status { margin-top: .5rem; font-weight: 600 }
+    </style>
+</head>
+<body>
+    <h1>ODW SpaceAPI – Test UI (Debug)</h1>
+    <p>Nur für Debugzwecke. Diese Seite sendet JSON POST-Anfragen an die lokale API unter <code>/api/</code>.</p>
+
+    <div class="card">
+        <h2>Konfiguration</h2>
+        <label for="api-token">API Token (optional, setze <code>API_TOKEN</code> auf dem Server)</label>
+        <input id="api-token" type="text" placeholder="Optional: X-API-Token" />
+        <small>Token wird lokal im Browser gespeichert (localStorage).</small>
+        <br>
+        <button onclick="saveToken()">Token speichern</button>
+        <button onclick="clearToken()">Token entfernen</button>
+    </div>
+
+    <div id="state" class="card">
+        <h2>Öffnungsstatus ändern</h2>
+        <label for="state-sel">Offen?</label>
+        <select id="state-sel">
+            <option value="true">Offen</option>
+            <option value="false">Geschlossen</option>
+        </select>
+        <label for="state-msg">Nachricht</label>
+        <input id="state-msg" type="text" value="DeineNachricht" />
+        <button onclick="change_state()">Ändern</button>
+    </div>
+
+    <div id="temperature" class="card">
+        <h2>Temperatur ändern</h2>
+        <label for="temperature-val">Wert (°C)</label>
+        <input type="number" id="temperature-val" value="0">
+        <button onclick="change_temperature()">Ändern</button>
+    </div>
+
+    <div id="humidity" class="card">
+        <h2>Luftfeuchtigkeit ändern</h2>
+        <label for="humidity-val">Wert (%)</label>
+        <input type="number" id="humidity-val" value="0">
+        <button onclick="change_humidity()">Ändern</button>
+    </div>
+
+    <div id="power" class="card">
+        <h2>Stromverbrauch ändern</h2>
+        <label for="power-val">Wert (W)</label>
+        <input type="number" id="power-val" value="0">
+        <button onclick="change_power()">Ändern</button>
+    </div>
+
+    <div id="network-connections" class="card">
+        <h2>Netzwerkverbindungen ändern</h2>
+        <label for="network-val">Anzahl Verbindungen</label>
+        <input type="number" id="network-val" value="0">
+        <button onclick="change_network_connection()">Ändern</button>
+    </div>
+
+    <div id="network-traffic" class="card">
+        <h2>Netzwerktraffic ändern</h2>
+        <label for="network-traffic-val">bits per second</label>
+        <input type="number" id="network-traffic-val" value="0">
+        <button onclick="change_network_traffic()">Ändern</button>
+    </div>
+
+    <div id="people" class="card">
+        <h2>Anzahl Personen ändern</h2>
+        <label for="people-val">Anzahl Personen</label>
+        <input type="number" id="people-val" value="0">
+        <button onclick="change_people()">Ändern</button>
+    </div>
+
+    <div id="status" aria-live="polite"></div>
+
+    <script>
+        const API_BASE = '/api/';
+
+        function saveToken() {
+            const v = document.getElementById('api-token').value.trim();
+            if (v) localStorage.setItem('odw_api_token', v);
+            updateStatus('Token gespeichert', 'green');
+        }
+
+        function clearToken() {
+            localStorage.removeItem('odw_api_token');
+            document.getElementById('api-token').value = '';
+            updateStatus('Token entfernt', 'green');
+        }
+
+        function getTokenHeader() {
+            const t = localStorage.getItem('odw_api_token');
+            return t ? { 'X-API-Token': t } : {};
+        }
+
+        function updateStatus(msg, color = 'black') {
+            const el = document.getElementById('status');
+            el.style.color = color;
+            el.textContent = msg;
+        }
+
+        async function postJson(path, body) {
+            const headers = Object.assign({ 'Content-Type': 'application/json' }, getTokenHeader());
+            try {
+                const r = await fetch(API_BASE + path, { method: 'POST', headers, body: JSON.stringify(body) });
+                const data = await r.json().catch(() => null);
+                if (!r.ok) {
+                    updateStatus((data && data.error) ? `Error: ${data.error}` : `HTTP ${r.status}`, 'red');
+                    return null;
+                }
+                updateStatus('OK — aktualisiert', 'green');
+                return data;
+            } catch (err) {
+                console.error(err);
+                updateStatus(`Netzwerkfehler: ${err.message}`, 'red');
+                return null;
+            }
+        }
+
+        function change_state() { postJson('update_state', { message: document.getElementById('state-msg').value, open: document.getElementById('state-sel').value === 'true' }); }
+        function change_temperature() { postJson('update_temperature', { value: Number(document.getElementById('temperature-val').value) }); }
+        function change_humidity() { postJson('update_humidity', { value: Number(document.getElementById('humidity-val').value) }); }
+        function change_power() { postJson('update_power_consumption', { value: Number(document.getElementById('power-val').value) }); }
+        function change_network_connection() { postJson('update_network_connections', { value: Number(document.getElementById('network-val').value) }); }
+        function change_network_traffic() { postJson('update_network_traffic', { value: Number(document.getElementById('network-traffic-val').value) }); }
+        function change_people() { postJson('update_people_now_present', { value: Number(document.getElementById('people-val').value) }); }
+
+        // initialize token input from localStorage
+        document.getElementById('api-token').value = localStorage.getItem('odw_api_token') || '';
+    </script>
+</body>
+</html>
