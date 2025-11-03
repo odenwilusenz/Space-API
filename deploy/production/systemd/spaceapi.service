@@ -1,0 +1,14 @@
+[Unit]
+Description=Odenwilusenz SpaceAPI
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/srv/spaceapi
+Environment="API_TOKEN=replace-with-your-token"
+ExecStart=/usr/bin/gunicorn -w 3 -b 127.0.0.1:5000 main:app
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

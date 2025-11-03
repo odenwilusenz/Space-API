@@ -1,103 +1,108 @@
 {
-  "api": "0.13",
-  "api_compatibility": [
-    "14"
-  ],
-  "space": "Odenwilusenz",
-  "logo": "https://odenwilusenz.ch/odw-global/wGlobal/layout/images/Logo_breit.png",
-  "url": "https://odenwilusenz.ch",
-  "location": {
-    "address": "Hardmorgenweg 21, 8222 Beringen, Switzerland",
-    "lon": 8.58,
-    "lat": 47.695
-  },
-  "contact": {
-    "email": "mail@odenwilusenz.ch",
-    "issue_mail": "bluetonyum@gmail.com"
-  },
-  "issue_report_channels": [
-    "issue_mail"
-  ],
-  "state": {
-    "message": "Jeden Mittwoch von 19:00 bis circa 0:00",
-    "open": true
-  },
-  "sensors": {
-    "temperature": [
-      {
-        "unit": "\u00c2\u00b0C",
-        "location": "Im Space",
-        "value": 400
-      }
+    "api": "0.13",
+    "api_compatibility": [
+        "14"
     ],
-    "humidity": [
-      {
-        "unit": "%",
-        "location": "Im Space",
-        "value": 894
-      }
+    "space": "Odenwilusenz",
+    "logo": "https://odenwilusenz.ch/odw-global/wGlobal/layout/images/Logo_breit.png",
+    "url": "https://odenwilusenz.ch",
+    "location": {
+        "address": "Hardmorgenweg 21, 8222 Beringen, Switzerland",
+        "lon": 8.58,
+        "lat": 47.695
+    },
+    "contact": {
+        "email": "mail@odenwilusenz.ch",
+        "issue_mail": "bluetonyum@gmail.com"
+    },
+    "issue_report_channels": [
+        "issue_mail"
     ],
-    "power_consumption": [
-      {
-        "unit": "W",
-        "location": "Im Space",
-        "value": 899
-      }
-    ],
-    "network_connections": [
-      {
-        "location": "Im Odenwilusenz_WLAN / Odenwilusenz_LAN",
-        "value": 49
-      }
-    ],
-    "network_traffic": [
-      {
-        "properties": {
-          "bits_per_second": {
-            "name": "Durchschnittswert Upstream und Downstream",
-            "value": 78979789
-          }
+    "state": {
+        "message": "DeineNachricht",
+        "open": false
+    },
+    "sensors": {
+        "people_now_present": [
+            {
+                "value": 10
+            }
+        ],
+        "temperature": [
+            {
+                "unit": "°C",
+                "location": "Im Space",
+                "value": 0
+            }
+        ],
+        "humidity": [
+            {
+                "unit": "%",
+                "location": "Im Space",
+                "value": 0
+            }
+        ],
+        "power_consumption": [
+            {
+                "unit": "W",
+                "location": "Im Space",
+                "value": 0
+            }
+        ],
+        "network_connections": [
+            {
+                "location": "Im Odenwilusenz_WLAN / Odenwilusenz_LAN",
+                "value": 0
+            }
+        ],
+        "network_traffic": [
+            {
+                "properties": {
+                    "bits_per_second": {
+                        "name": "Durchschnittswert Upstream und Downstream",
+                        "value": 0
+                    }
+                }
+            }
+        ]
+    },
+    "feeds": {
+        "wiki": {
+            "type": "DokuWiki",
+            "url": "https://wiki.odenwilusenz.ch"
+        },
+        "calendar": {
+            "type": "Web",
+            "url": "https://odenwilusenz.ch/odw/veranstaltungen/"
         }
-      }
+    },
+    "membership_plans": [
+        {
+            "name": "Besucher",
+            "currency": "CHF",
+            "billing_interval": "yearly",
+            "value": 0
+        },
+        {
+            "name": "Mitglied",
+            "currency": "CHF",
+            "billing_interval": "yearly",
+            "value": 120
+        },
+        {
+            "name": "Superuser",
+            "currency": "CHF",
+            "billing_interval": "yearly",
+            "value": 480
+        },
+        {
+            "name": "Co-Worker",
+            "currency": "CHF",
+            "billing_interval": "yearly",
+            "value": 1200
+        }
+    ],
+    "projects": [
+        "https://github.com/odenwilusenz"
     ]
-  },
-  "feeds": {
-    "wiki": {
-      "type": "DokuWiki",
-      "url": "https://wiki.odenwilusenz.ch"
-    },
-    "calendar": {
-      "type": "Web",
-      "url": "https://odenwilusenz.ch/odw/veranstaltungen/"
-    }
-  },
-  "membership_plans": [
-    {
-      "name": "Besucher",
-      "currency": "CHF",
-      "billing_interval": "yearly",
-      "value": 0
-    },
-    {
-      "name": "Mitglied",
-      "currency": "CHF",
-      "billing_interval": "yearly",
-      "value": 120
-    },
-    {
-      "name": "Superuser",
-      "currency": "CHF",
-      "billing_interval": "yearly",
-      "value": 480
-    },
-    {
-      "name": "Co-Worker",
-      "currency": "CHF",
-      "billing_interval": "yearly",
-      "value": 1200
-    }
-  ],
-  "projects": [
-    "https://github.com/odenwilusenz"
-  ]
 }
