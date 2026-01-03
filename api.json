@@ -1,0 +1,160 @@
+{
+  "api_compatibility": ["14", "15"],
+  "space": "Odenwilusenz",
+  "logo": "https://odenwilusenz.ch/favicon.ico",
+  "url": "https://odenwilusenz.ch",
+  "location": {
+    "address": "Hardmorgenweg 21, 8222 Beringen, Schweiz",
+    "lon": 8.57171860,
+    "lat": 47.69790250,
+    "timezone": "Europe/Zurich",
+    "country_code": "CH",
+    "hint": "Immer am Mittwoch ab 19:00 Uhr geöffnet. Ansonsten immer wieder durch ein SuperUser offen ;)"
+  },
+  "state": {
+    "open": false,
+    "message": "Automatisch geschlossen durch Timeout",
+    "lastchange": 1704067200
+  },
+  "contact": {
+    "email": "mail@odenwilusenz.ch",
+    "issue_mail": "spaceapi@justsomeone.ch"
+  },
+  "sensors": {
+    "temperature": [
+      {
+        "value": 0,
+        "unit": "°C",
+        "location": "Im Space",
+        "name": "indoor_temperature",
+        "description": "Die aktuelle Temperatur Innen",
+        "lastchange": 1704067200
+      },
+      {
+      "value": 0,
+        "unit": "°C",
+        "location": "Aussen",
+        "name": "outdoor_temperature",
+        "description": "Die aktuelle Temperatur Aussen",
+        "lastchange": 1704067200
+      }
+    ],
+    "humidity": [
+      {
+        "value": 0,
+        "unit":"%",
+        "location": "Im Space",
+        "name": "indoor_humidity",
+        "description": "Die aktuelle Luftfeuchtigkeit Innen",
+        "lastchange": 1704067200
+      },
+      {
+      "value": 0,
+        "unit":"%",
+        "location": "Aussen",
+        "name": "outdoor_humidity",
+        "description": "Die aktuelle Luftfeuchtigkeit Aussen",
+        "lastchange": 1704067200
+      }
+    ],
+    "power_consumption": [
+      {
+        "value": 0,
+        "unit": "W",
+        "location": "gesamtverbrauch",
+        "name": "total_power_consumption",
+        "description": "Der aktuelle Gesamtstromverbrauch",
+        "lastchange": 1704067200
+      }
+    ],
+    "network_connections": [
+      {
+        "value": 0,
+        "description": "Gesamt Netzwerkverbindungen",
+        "lastchange": 1704067200
+      }
+    ],
+    "network_traffic": [
+      {
+        "properties": {
+          "bits_per_second": {
+            "value": 0
+          }
+        },
+        "name": "download_traffic",
+        "description": "Der aktuelle Download Traffic",
+        "lastchange": 1704067200
+      },
+      {
+        "properties": {
+          "bits_per_second": {
+            "value": 0
+          }
+        },
+        "name": "upload_traffic",
+        "description": "Der aktuelle Upload Traffic",
+        "lastchange": 1704067200
+      }
+    ]
+  },
+  "feeds": {
+    "wiki": {
+      "type": "dokuwiki",
+      "url": "https://wiki.odenwilusenz.ch/"
+    },
+    "calendar": {
+      "type": "website",
+      "url": "https://odenwilusenz.ch/odw/veranstaltungen/"
+    },
+  "membership_plans": [
+    {
+      "name": "Besucher",
+      "value": 0,
+      "currency": "CHF",
+      "billing_interval": "yearly",
+      "description": "Zugang am offenen Abend, Events durchführen, Geräte benutzen, Stimmberechtigt im Plenum"
+    },
+    {
+      "name": "Gönner",
+      "value": 30,
+      "currency": "CHF",
+      "billing_interval": "yearly",
+      "description": "Zugang am offenen Abend, Events durchführen, Geräte benutzen, Stimmberechtigt im Plenum"
+    },
+    {
+      "name": "Mitglied",
+      "value": 120,
+      "currency": "CHF",
+      "billing_interval": "yearly",
+      "description": "Zugang am offenen Abend, Events durchführen, Geräte benutzen, Stimmberechtigt im Plenum, Vereinsmitgliedschaft"
+    },
+    {
+      "name": "Superuser",
+      "value": 480,
+      "currency": "CHF",
+      "billing_interval": "yearly",
+      "description": "Zugang am offenen Abend, Events durchführen, Geräte benutzen, Stimmberechtigt im Plenum, Vereinsmitgliedschaft, 24/7 Zugang zum Space"
+    },
+    {
+      "name": "Coworker",
+      "value": 1200,
+      "currency": "CHF",
+      "billing_interval": "yearly",
+      "description": "Zugang am offenen Abend, Events durchführen, Geräte benutzen, Stimmberechtigt im Plenum, KEINE Vereinsmitgliedschaft, 24/7 Zugang zum Space, Geräte Flatrate, Fixer Platz zugeteilt"
+    }
+  ],
+  "linked_spaces": [
+    {
+      "endpoint": "https://bodensee.space/spaceapi/toolboxbodensee.json",
+      "website": "https://toolbox-bodensee.de/"
+    },
+    {
+      "endpoint": "https://spaceapi.kabelsalat.ch/",
+      "website": "https://ccc-basel.ch/"
+    },
+    {
+      "website": "https://bitwaescherei.ch/"
+    }
+  ]
+  }
+}
