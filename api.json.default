@@ -1,0 +1,27 @@
+{
+  "api_compatibility": ["14", "15"],
+  "space": "Hackerspace-Namen",
+  "logo": "https://hackerspace.ch/favicon.ico",
+  "url": "https://hackerspace.ch",
+  "location": {
+    "address": "Beispielstrasse 00, 1111 Beispielstadt, Schweiz",
+    "lon": 0.00000000,
+    "lat": 0.00000000,
+    "timezone": "Europe/Zurich",
+    "country_code": "CH",
+    "hint": "Irgendetwas was du hinschreiben möchtest"
+  },
+  "state": {
+    "open": false,
+    "message": "Nachricht zu deinem State",
+    "lastchange": 1700000000
+  },
+  "contact": {
+    "email": "info@hackerspace.ch",
+    "issue_mail": "spaceapi@hackerspace.ch"
+  },
+  "sensors": {
+  },
+  "feeds": {
+    }
+}
