@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  space-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: space-api
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=False
+      - FLASK_HOST=0.0.0.0
+      - FLASK_PORT=8000
+      - FLASK_SECRET_KEY=${FLASK_SECRET_KEY:-change-this-in-production}
+      - SPACE_API_PASSWORD=${SPACE_API_PASSWORD:-admin123}
+      - KEEP_ALIVE_TIMEOUT=30
+      - LOG_LEVEL=INFO
+    volumes:
+      - ./api.json:/app/api.json
+    restart: unless-stopped
+    networks:
+      - space-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api.json"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
+networks:
+  space-network:
+    driver: bridge

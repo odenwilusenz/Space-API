@@ -1,0 +1,25 @@
+[MASTER]
+# Only show warnings with the listed confidence levels. Leave empty to show all.
+confidence=HIGH
+
+# Disable specific warnings
+disable=
+    missing-docstring,
+    too-many-arguments,
+    line-too-long,
+    broad-except,
+
+[FORMAT]
+# String used as indentation unit.
+indent-string='    '
+
+# Number of spaces of indentation required inside hanging or continued lines.
+indent-after-paren=4
+
+[LOGGING]
+# The type of string formatting that logging methods do
+logging-format-style=old
+
+[VARIABLES]
+# List of additional names supposed to be defined in builtins.
+additional-builtins=_
