@@ -105,7 +105,8 @@
     "calendar": {
       "type": "website",
       "url": "https://odenwilusenz.ch/odw/veranstaltungen/"
-    },
+    }
+  },
   "membership_plans": [
     {
       "name": "Besucher",
@@ -156,5 +157,4 @@
       "website": "https://bitwaescherei.ch/"
     }
   ]
-  }
 }

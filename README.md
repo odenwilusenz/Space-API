@@ -1,16 +1,19 @@
-# Space-API - Odenwilusenz
+# 🚀 Space-API Server - Odenwilusenz
 
-Ein vollständiger **Space-API Server** nach dem [SpaceAPI Standard](https://spaceapi.io/) für Hackerspaces und Makerspaces. Dieses Projekt ermöglicht es, den Status und die Sensordaten eines Spaces über eine standardisierte REST-API bereitzustellen. Zurzeit in Einsatz beim Odenwilusenz in Beringen.
+Ein vollständiger **Space-API Server** nach dem [SpaceAPI Standard](https://spaceapi.io/) für Hackerspaces und Makerspaces. Dieses Projekt stellt den Status und die Sensordaten eines Spaces über eine standardisierte REST-API bereit.
+
+Derzeit in Einsatz beim **Odenwilusenz** in Beringen, Schweiz.
 
 ## 📋 Inhaltsverzeichnis
 
-- [Was ist das?](#was-ist-das)
-- [Installation](#installation)
-- [Konfiguration](#konfiguration)
-- [Verwendung](#verwendung)
+- [Features](#features)
+- [Installation & Setup](#installation--setup)
 - [API Endpoints](#api-endpoints)
-- [Beispiele](#beispiele)
-- [Für den eigenen Space anpassen](#für-den-eigenen-space-anpassen)
+- [Keep-Alive System](#keep-alive-system)
+- [Verwendungsbeispiele](#verwendungsbeispiele)
+- [Für deinen Space konfigurieren](#für-deinen-space-konfigurieren)
+- [Manual Override Interface](#manual-override-interface)
+- [Sensoren](#sensoren)
 
 ---
 
@@ -23,9 +26,10 @@ Dieses Projekt stellt eine **REST-API nach dem SpaceAPI Standard** bereit, mit d
 ✅ **SpaceAPI Standard konform** - Kompatibel mit allen SpaceAPI-kompatiblen Anwendungen
 ✅ **Einfache Konfiguration** - Alle statischen Daten in `api.json`
 ✅ **Dynamische Sensordaten** - Echtzeit-Aktualisierung von Temperatur, Luftfeuchtigkeit, Stromverbrauch, etc.
-✅ **Admin-Interface** - Einfache Endpoints zum Aktualisieren von Sensordaten
+✅ **API-Key Authentisierung** - Schreibzugriffe erfordern API-Key Header
 ✅ **State Management** - Einfaches An/Aus-Schalten des Spaces mit Nachricht
-✅ **Keine Datenbankabhängigkeit** - Läuft mit reiner Flask-Anwendung
+✅ **Keep-Alive System** - Automatisches Schließen des Spaces nach 30 Sekunden ohne Signal
+✅ **Manual Override Interface** - Passwort-geschützte HTML Seite zur manuellen Bearbeitung
 
 ### Typische Anwendungen:
 
@@ -51,17 +55,30 @@ Dieses Projekt stellt eine **REST-API nach dem SpaceAPI Standard** bereit, mit d
    cd Space-API
    ```
 
-2. **Flask installieren:**
+2. **Abhängigkeiten installieren:**
    ```bash
-   pip install flask
+   pip install -r requirements.txt
    ```
 
-3. **Server starten:**
+3. **Erforderliche Umgebungsvariablen setzen:**
+   ```bash
+   # Linux/Mac - in ~/.bashrc oder ~/.zshrc
+   export FLASK_SECRET_KEY="eine-lange-zufallszeichenkette-mindestens-32-zeichen"
+   export SPACE_API_PASSWORD="dein-sicheres-admin-passwort"
+   export SPACE_API_ADMIN_KEY="dein-eindeutiger-api-key-fuer-aenderungen"
+   
+   # Windows (PowerShell)
+   $env:FLASK_SECRET_KEY="eine-lange-zufallszeichenkette-mindestens-32-zeichen"
+   $env:SPACE_API_PASSWORD="dein-sicheres-admin-passwort"
+   $env:SPACE_API_ADMIN_KEY="dein-eindeutiger-api-key-fuer-aenderungen"
+   ```
+
+4. **Server starten:**
    ```bash
    python main.py
    ```
 
-4. **Server ist aktiv:**
+5. **Server ist aktiv:**
    Der Server läuft jetzt auf `http://localhost:8000`
 
 ---
@@ -154,17 +171,17 @@ Wichtige Endpoints:
 Mit `curl` oder einem REST-Client (z.B. Postman, Insomnia):
 
 ```bash
-# Komplette API abrufen
+# Komplette API abrufen (SpaceAPI Standard)
 curl http://localhost:8000/api.json
 
-# Aktuellen State abrufen
-curl http://localhost:8000/admin/state
+# State auslesen
+curl http://localhost:8000/api/get/state/open
 
-# Alle Sensoren abrufen
-curl http://localhost:8000/admin/all_sensors
-
-# Hilfe anzeigen
-curl http://localhost:8000/help
+# Wert ändern (mit API-Key Header)
+curl -X POST http://localhost:8000/api/post/state/open \
+  -H "X-API-Key: dein-api-key-fuer-schreibzugriffe" \
+  -H "Content-Type: application/json" \
+  -d '{"value": true}'
 ```
 
 ---
@@ -193,150 +210,131 @@ Gibt die komplette api.json mit allen aktuellen Sensordaten und State nach Space
 
 ---
 
-### 🎛️ State Management
+### 🎛️ Lesen von Werten (GET)
 
-#### `GET /admin/state`
-Gibt den aktuellen State des Spaces zurück.
+#### `GET /api/get/<path>`
+Liest beliebige Werte aus der API aus. Keine Authentisierung erforderlich.
 
-**Response:**
-```json
-{
-  "open": false,
-  "message": "Space ist geschlossen",
-  "lastchange": 1704067200
-}
+**Beispiele:**
+```bash
+# State auslesen
+GET /api/get/state/open
+Response: {"value": true}
+
+# Temperatur auslesen
+GET /api/get/sensors/temperature/0/value
+Response: {"value": 22.5}
 ```
 
-#### `POST /admin/state`
-Aktualisiert den State (offen/geschlossen) und die Nachricht.
+---
+
+### 📝 Ändern von Werten (POST/PUT - mit Authentisierung)
+
+#### `POST /api/post/<path>` oder `PUT /api/post/<path>`
+Ändert Werte in der API. **Erforderlich: X-API-Key Header**
+
+**Request Header:**
+```
+X-API-Key: dein-api-key-fuer-schreibzugriffe
+Content-Type: application/json
+```
 
 **Request Body:**
 ```json
 {
-  "open": true,
-  "message": "Space offen!"
+  "value": <beliebiger-wert>
 }
 ```
 
-**Response:**
+**Beispiele:**
+
+```bash
+# Space öffnen
+curl -X POST http://localhost:8000/api/post/state/open \
+  -H "X-API-Key: dein-api-key" \
+  -H "Content-Type: application/json" \
+  -d '{"value": true}'
+
+# Nachricht setzen
+curl -X POST http://localhost:8000/api/post/state/message \
+  -H "X-API-Key: dein-api-key" \
+  -H "Content-Type: application/json" \
+  -d '{"value": "Space ist offen!"}'
+
+# Temperatur aktualisieren
+curl -X POST http://localhost:8000/api/post/sensors/temperature/0/value \
+  -H "X-API-Key: dein-api-key" \
+  -H "Content-Type: application/json" \
+  -d '{"value": 23.5}'
+```
+
+**Response (erfolgreich):**
 ```json
 {
   "success": true,
-  "message": "State erfolgreich aktualisiert",
-  "new_state": {
-    "open": true,
-    "message": "Space offen!",
-    "lastchange": 1704067200
-  }
+  "path": "state/open",
+  "new_value": true,
+  "message": "Wert erfolgreich aktualisiert"
 }
 ```
 
----
-
-### 🌡️ Sensor Endpoints
-
-#### Temperature
-
-**`GET /admin/sensors/temperature/indoor`** - Innentemperatur auslesen
-**`POST /admin/sensors/temperature/indoor`** - Innentemperatur setzen
-
-**`GET /admin/sensors/temperature/outdoor`** - Außentemperatur auslesen
-**`POST /admin/sensors/temperature/outdoor`** - Außentemperatur setzen
-
-**Request Body für POST:**
-```json
-{ "value": 22.5 }
-```
-
----
-
-#### Humidity (Luftfeuchtigkeit)
-
-**`GET /admin/sensors/humidity/indoor`** - Innenluftfeuchtigkeit auslesen
-**`POST /admin/sensors/humidity/indoor`** - Innenluftfeuchtigkeit setzen
-
-**`GET /admin/sensors/humidity/outdoor`** - Außenluftfeuchtigkeit auslesen
-**`POST /admin/sensors/humidity/outdoor`** - Außenluftfeuchtigkeit setzen
-
-**Request Body für POST:**
-```json
-{ "value": 55 }
-```
-
----
-
-#### Power (Stromverbrauch)
-
-**`GET /admin/sensors/power`** - Stromverbrauch auslesen
-**`POST /admin/sensors/power`** - Stromverbrauch setzen
-
-**Request Body für POST:**
-```json
-{ "value": 3000 }
-```
-
----
-
-#### Network Connections
-
-**`GET /admin/sensors/network/connections`** - Anzahl Netzwerkverbindungen auslesen
-**`POST /admin/sensors/network/connections`** - Anzahl setzen
-
-**Request Body für POST:**
-```json
-{ "value": 12 }
-```
-
----
-
-#### Network Traffic
-
-**`GET /admin/sensors/network/traffic/download`** - Download-Traffic auslesen
-**`POST /admin/sensors/network/traffic/download`** - Download-Traffic setzen
-
-**`GET /admin/sensors/network/traffic/upload`** - Upload-Traffic auslesen
-**`POST /admin/sensors/network/traffic/upload`** - Upload-Traffic setzen
-
-**Request Body für POST:**
-```json
-{ "value": 150000 }
-```
-
----
-
-#### Alle Sensoren
-
-**`GET /admin/all_sensors`** - Gibt alle Sensordaten auf einmal zurück
-
-**Response:**
+**Response (Fehler - fehlender API-Key):**
 ```json
 {
-  "temperature": {
-    "indoor": 20.5,
-    "outdoor": 15.2
-  },
-  "humidity": {
-    "indoor": 45,
-    "outdoor": 60
-  },
-  "power_consumption": 2500,
-  "network_connections": 8,
-  "network_traffic": {
-    "download": 125000,
-    "upload": 45000
-  }
+  "error": "Unauthorized - X-API-Key Header erforderlich"
 }
 ```
+
+---
+
+### 🔐 Manual Override (Passwort-geschützte Web-Interface)
+
+#### `GET /manual-override`
+Zeigt ein passwort-geschütztes HTML-Interface zum manuellen Bearbeiten der api.json.
+
+**Verwendung:**
+1. Browser zu `http://localhost:8000/manual-override` navigieren
+2. Mit SPACE_API_PASSWORD anmelden
+3. JSON editieren und speichern
+
+#### `POST /manual-override/login`
+Login für Manual Override Session.
+
+**Request:**
+```json
+{
+  "password": "dein-admin-passwort"
+}
+```
+
+**Response (erfolgreich):**
+```json
+{
+  "success": true,
+  "csrf_token": "..."
+}
+```
+
+#### `POST /manual-override/save`
+Speichert die editierte JSON (mit CSRF-Schutz).
+
+**Request Header:**
+```
+X-CSRF-Token: <csrf-token-von-login>
+Content-Type: application/json
+```
+
+**Request Body:** Die komplette api.json mit Änderungen
 
 ---
 
 ### ℹ️ Info Endpoints
 
 #### `GET /`
-Zeigt eine Übersicht der verfügbaren Endpoints.
+Zeigt "Kein Command".
 
-#### `GET /help`
-Zeigt eine detaillierte Dokumentation aller Endpoints.
+#### `GET /api/`
+Zeigt "Kein Command".
 
 ---
 
